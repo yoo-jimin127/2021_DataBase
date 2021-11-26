@@ -1,0 +1,3 @@
+select distinct(customer_name)
+from customer natural join borrower natural join loan_branch natural join branch
+where customer.customer_city = branch.branch_city;

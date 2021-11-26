@@ -1,0 +1,9 @@
+with temp(customer_id,branch_name) as (select customer_id,branch_name
+from loan_branch natural join borrower natural join branch)
+select distinct C.customer_id, C.customer_name
+from customer as C
+where not exists ( select distinct branch_name
+	from branch
+	where branch_city = "서울" and branch_name not in (	select temp.branch_name
+					from temp
+					where temp.customer_id = C.customer_id));

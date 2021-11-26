@@ -1,0 +1,7 @@
+select customer_id, truncate(avg(balance),0)
+from customer as T natural join depositor natural join account
+where 3 <= ( select count(account_number)
+	from customer as S natural join depositor
+where T.customer_id = S.customer_id)
+	and T.customer_city = "서울"
+	group by customer_id;

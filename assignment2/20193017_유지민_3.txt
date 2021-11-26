@@ -1,0 +1,3 @@
+select sum(amount)
+from loan natural join borrower natural join customer
+where customer_name like "김 %";

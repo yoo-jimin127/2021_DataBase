@@ -1,0 +1,4 @@
+select distinct customer_id, customer_name
+from customer natural join depositor
+where customer_id not in ( select customer_id
+from customer natural join borrower);

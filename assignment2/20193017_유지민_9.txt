@@ -1,0 +1,8 @@
+update account
+set balance = case
+   when balance >= 1000 and balance*1.05<=150000
+   then truncate(balance * 1.05, 0)
+   when balance < 1000
+   then truncate(balance * 1.03, 0)
+   else balance
+end;
