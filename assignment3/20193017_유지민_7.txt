@@ -1,0 +1,17 @@
+delimiter $$
+
+drop function if exists get_loan_counts;
+
+create function get_loan_counts(input_name varchar(20))returns int
+begin
+	declare val int;
+	set val = 0;
+ 
+	set val = (select count(loan_number)
+		from borrower natural join customer
+		group by customer_name
+		having customer_name = input_name);
+	return val;
+end $$
+ 
+delimiter;
